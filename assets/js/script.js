@@ -10,14 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //use more modern syntax to iterate through the buttons array
     for (let button of buttons) {
-        console.log("button clicked " + button);
+        //console.log("button clicked " + button);
         //when the button is clicked, funtion will run
         button.addEventListener("click", function () {
             //check what value of data type is
             //if click is submit tell the user they clicked submit
             //THIS refers to the button that was just clicked
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+                //alert("You clicked Submit!");
+                checkAnswer();
             } else {
                 //set the gameType to the value of that attribute
                 //this will tell us which gameType to run
@@ -56,7 +57,24 @@ function runGame(gameType) {
     }
 }
 
+/**
+ * Checks the answer against the first element in 
+ * the returned calculateCorrectAsnwer array
+ */
 function checkAnswer() {
+
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    //this will return an array
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+    //if isCorrect is the short way of saying "if iscorrect = true"
+    if (isCorrect) {
+        alert("Hey! You got it right :)");
+    } else {
+        alert(`Awww... you answered ${userAnswer}. The correct answer is ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);
 
 }
 
