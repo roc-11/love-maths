@@ -28,6 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    //user can use enter button to submit answer
+    document.getElementById("answer-box").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    });
     //default is for addition game to load
     runGame("addition");
 });
@@ -43,6 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
  * and after the user's answer has been processes
  */
 function runGame(gameType) {
+
+    //to clear the answer box each time runGame() is called
+    document.getElementById("answer-box").value = "";
+    //to set the cursor auto in the answer box when game is loaded FOCUS
+    document.getElementById("answer-box").focus();
 
     //creates 2 random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
